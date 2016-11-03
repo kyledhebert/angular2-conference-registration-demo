@@ -7,16 +7,8 @@
         </div>
 
         <div class="col-md-9">
-            <div class="row carousel-holder">
-                <div class="col md 12">
-                    <!-- <registration-carousel></registration-carousel> -->
-                </div>
-            </div>
-            <div class="row">
-                <div *ngFor="let course of courses" class="col-sm-4 col-lg-4 col-md-4">
-                <registration-course-listing [course]="course"></registration-course-listing>
-            </div>
-        </div>
+            <router-outlet></router-outlet>
+        </div>    
     </div>
 </div>
 

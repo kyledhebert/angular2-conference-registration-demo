@@ -1,5 +1,4 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {Course, CourseService} from '../../services/course-service'
 
 @Component({
     selector: 'registration-application',
@@ -8,10 +7,4 @@ import {Course, CourseService} from '../../services/course-service'
     encapsulation: ViewEncapsulation.None
 })
 
-export class ApplicationComponent {
-    courses: Array<Course> = [];
-
-    constructor(private courseService: CourseService) {
-        this.courses = this.courseService.getCourses();
-    }
-}
+export class ApplicationComponent {}
