@@ -1,6 +1,6 @@
 {
-  "name": "angular-seed",
-  "description": "An initial npm-managed project for Chapter 2",
+  "name": "angular-conference-registration",
+  "description": "An Angular 2 demo project",
   "private": true,
   "scripts": {
     "start": "live-server"
@@ -17,7 +17,6 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.0",
     "jquery": "^3.1.1",
-    "materialize-css": "^0.97.8",
     "rxjs": "5.0.0-beta.12",
     "systemjs": "0.19.37",
     "zone.js": "0.6.21"
