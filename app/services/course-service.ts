@@ -12,7 +12,7 @@ export class Course {
 
 export class CourseService {
     getCourses(): Array<Course> {
-        return courses.map (c => new Course(c.id, c.title, c.number, c.instructor, c.description, c.categories))
+        return courses.map (c => new Course(c.id, c.title, c.price,  c.instructor, c.description, c.categories))
     }
 }
 
@@ -20,6 +20,7 @@ var courses = [
     {
         "id": 0,
         "title": "A Great Course",
+        "instructor": "John Gruber",
         "price": 75.00,
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam error, quod ratione possimus ipsam accusamus necessitatibus, obcaecati culpa tempora doloribus id illo ad fugit, odit odio velit eius incidunt dignissimos.",
         "categories": ["javascript", "angular"]
@@ -27,6 +28,7 @@ var courses = [
     {
         "id": 1,
         "title": "A Super Course",
+        "instructor": "John Gruber",
         "price": 65.00,
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam error, quod ratione possimus ipsam accusamus necessitatibus, obcaecati culpa tempora doloribus id illo ad fugit, odit odio velit eius incidunt dignissimos.",
         "categories": ["css", "html"]
@@ -34,6 +36,7 @@ var courses = [
     {
         "id": 2,
         "title": "An Awesome Course",
+        "instructor": "John Gruber",
         "price": 95.00,
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam error, quod ratione possimus ipsam accusamus necessitatibus, obcaecati culpa tempora doloribus id illo ad fugit, odit odio velit eius incidunt dignissimos.",
         "categories": ["javascript"]
@@ -41,6 +44,7 @@ var courses = [
     {
         "id": 3,
         "title": "An Amazing Course",
+        "instructor": "John Gruber",
         "price": 125.00,
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam error, quod ratione possimus ipsam accusamus necessitatibus, obcaecati culpa tempora doloribus id illo ad fugit, odit odio velit eius incidunt dignissimos.",
         "categories": ["javascript", "angular", "node"]
@@ -48,6 +52,7 @@ var courses = [
     {
         "id": 4,
         "title": "An Okay Course",
+        "instructor": "John Gruber",
         "price": 45.00,
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam error, quod ratione possimus ipsam accusamus necessitatibus, obcaecati culpa tempora doloribus id illo ad fugit, odit odio velit eius incidunt dignissimos.",
         "categories": ["javascript", "angular"]
