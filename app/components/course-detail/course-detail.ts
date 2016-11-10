@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Course, Instructor, CourseService } from '../../services/course-service'
 
 @Component({
     selector: 'course-detail-page',
@@ -8,9 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class CourseDetailComponent {
-    courseTitle: string;
+    course: Course;
+    instructors: Instructor[];
 
-    constructor(route: ActivatedRoute) {
-        this.courseTitle = route.snapshot.params['courseTitle'];
+    constructor(route: ActivatedRoute, courseService: CourseService) {
+        let courseId: number = parseInt(route.snapshot.params['courseId']);
+        this.course = courseService.getCourseById(courseId);
+        this.instructors = courseService.getInstructorsForCourse(this.course.id);
     }
 }

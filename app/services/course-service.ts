@@ -3,16 +3,34 @@ export class Course {
         public id: number,
         public title: string,
         public price: number,
-        public instructor: string,
         public description: string,
         public categories: Array<string>) {
+    }
+}
 
+export class Instructor {
+    constructor(
+        public id: number,
+        public courseId: number,
+        public firstName: string,
+        public lastName: string,
+        public bio:string) {        
     }
 }
 
 export class CourseService {
     getCourses(): Array<Course> {
-        return courses.map (c => new Course(c.id, c.title, c.price,  c.instructor, c.description, c.categories))
+        return courses.map (c => new Course(c.id, c.title, c.price, c.description, c.categories))
+    }
+
+    getCourseById(courseId: number) : Course {
+        return courses.find(c => c.id === courseId);
+    }
+
+    getInstructorsForCourse(courseId: number) : Instructor[] {
+        return instructors
+            .filter(i => i.courseId === courseId)
+            .map(r => new Instructor(r.id, r.courseId, r.firstName, r.lastName, r.bio))
     }
 }
 
@@ -58,4 +76,22 @@ var courses = [
         "categories": ["javascript", "angular"]
     },
 
+]
+
+var instructors = [
+    {
+        "id": 0,
+        "courseId": 0,
+        "firstName": "John",
+        "lastName": "Gruber",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti dolorum quam numquam ipsum, molestiae, modi expedita laborum asperiores amet ea consectetur eos culpa nobis a libero nam dignissimos, sunt totam!"
+    },
+    {
+        "id": 1,
+        "courseId": 1,
+        "firstName": "Liz",
+        "secondName": "England",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet minus dicta ex asperiores, modi non accusantium perferendis reiciendis. Totam earum quas, et fugit suscipit facere ipsam voluptatibus recusandae mollitia error."
+
+    }
 ]

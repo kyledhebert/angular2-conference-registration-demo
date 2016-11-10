@@ -15,7 +15,7 @@ import {CourseService} from './services/course-service';
     imports:      [ BrowserModule,
                     RouterModule.forRoot([
                         {path: '', component:HomeComponent},
-                        {path: 'courses/:courseTitle', component: CourseDetailComponent}
+                        {path: 'courses/:courseId', component: CourseDetailComponent}
                         ]) ],
     declarations: [ ApplicationComponent,
                     NavbarComponent,
