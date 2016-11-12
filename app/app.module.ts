@@ -2,6 +2,8 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { ApplicationComponent }  from './components/application/application';
 import { NavbarComponent }  from './components/navbar/navbar';
 import { SearchComponent }  from './components/search/search';
@@ -13,6 +15,8 @@ import {CourseService} from './services/course-service';
 
 @NgModule({
     imports:      [ BrowserModule,
+                    FormsModule,
+                    ReactiveFormsModule, 
                     RouterModule.forRoot([
                         {path: '', component:HomeComponent},
                         {path: 'courses/:courseId', component: CourseDetailComponent}
