@@ -32,6 +32,10 @@ export class CourseService {
             .filter(i => i.courseId === courseId)
             .map(r => new Instructor(r.id, r.courseId, r.firstName, r.lastName, r.bio))
     }
+
+    getAllCategories(): string[] {
+        return ['Angular', 'React', 'TypeScript', 'JavaScript', 'Node']
+    }
 }
 
 var courses = [
