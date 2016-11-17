@@ -13,8 +13,20 @@ export class CourseDetailComponent {
     instructors: Instructor[];
 
     constructor(route: ActivatedRoute, courseService: CourseService) {
-        let courseId: number = parseInt(route.snapshot.params['courseId']);
-        this.course = courseService.getCourseById(courseId);
-        this.instructors = courseService.getInstructorsForCourse(this.course.id);
+        const courseId: number = parseInt(route.snapshot.params['courseId']);
+
+        courseService
+            .getCourseById(courseId)
+            .subscribe(
+                course => {
+                    this.course = course;
+                },
+                error => console.error(error));
+
+        courseService
+            .getInstructorsForCourse(courseId)
+            .subscribe(
+                instructors => this.instructors = instructors,
+                error => console.error(error));
     }
 }

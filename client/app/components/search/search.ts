@@ -19,7 +19,7 @@ export class SearchComponent {
         this.formModel = fb.group({
             'title': [null, Validators.minLength(3)],
             'price': [null, positiveNumberValidator],
-            'category': [-1]
+            'category': ['']
         })
     }
 

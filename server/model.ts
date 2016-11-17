@@ -4,7 +4,7 @@ export class Course {
         public title: string,
         public price: number,
         public description: string,
-        public categories: Array<string>) {}
+        public categories: string[]) {}
 }
 
 export class Instructor {
