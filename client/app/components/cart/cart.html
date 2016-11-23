@@ -1,0 +1,12 @@
+<h3>Your Cart</h3>
+<ul class="list-unstyled">
+    <li *ngFor="let cartCourse of cartCourses | async">
+        <span class="pull-right">${{ cartCourse.price }}
+            <a href="#" (click)="delete(cartCourse)"><span class="glyphicon glyphicon-remove" ></span></a>
+        </span>
+        <h5>{{ cartCourse.title }}</h5>
+    </li>
+</ul>
+<h4 class="pull-right">Total: ${{ cartTotal }}</h4>
+<button type="submit" class="btn btn-success btn-block">Checkout</button>
+

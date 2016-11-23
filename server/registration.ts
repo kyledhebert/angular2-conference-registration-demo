@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as path from 'path';
 import { Server as HttpServer } from 'http';
 import { Course, Instructor, getCourses, getCourseById, getInstructorsByCourseId } from './model';
+import { CartCourse, getCartItems, addCartItem, deleteCartItem, getCartTotal } from './model'; 
 
 const app = express();
 
@@ -19,6 +20,14 @@ app.get('/courses/:id', (request, response) => {
 
 app.get('/courses/:id/instructors', (request, response) => {
     response.json(getInstructorsByCourseId(parseInt(request.params.id)));
+})
+
+app.get('/cart', (request, response) => {
+    response.json(getCartItems(request.query));
+})
+
+app.delete('/cart/:id', (request, response) => {
+    response.json(deleteCartItem(parseInt(request.params.id)));
 })
 
 const httpServer: HttpServer = app.listen(8000, 'localhost', () => {

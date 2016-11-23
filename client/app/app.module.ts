@@ -8,11 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApplicationComponent }  from './components/application/application';
 import { NavbarComponent }  from './components/navbar/navbar';
 import { SearchComponent }  from './components/search/search';
+import { CartComponent } from './components/cart/cart';
 import { CourseListingComponent }  from './components/course-listing/course-listing';
 import { CourseDetailComponent } from './components/course-detail/course-detail';
 import { HomeComponent } from './components/home/home';
 import { FooterComponent }  from './components/footer/footer';
-import {CourseService} from './services/course-service';
+import { CourseService } from './services/course-service';
+import { CartService } from './services/cart-service';
 
 @NgModule({
     imports:      [ BrowserModule,
@@ -29,9 +31,11 @@ import {CourseService} from './services/course-service';
                     CourseDetailComponent,
                     CourseListingComponent,
                     SearchComponent,
+                    CartComponent,
                     FooterComponent,
                      ],
-    providers:    [CourseService,
+    providers:    [ CourseService,
+                    CartService, 
                     {provide: LocationStrategy, useClass: HashLocationStrategy}], 
     bootstrap:    [ ApplicationComponent ]
 })

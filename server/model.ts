@@ -8,13 +8,21 @@ export class Course {
 }
 
 export class Instructor {
-  constructor(
-    public id: number,
-    public courseId: number,
-    public firstName: string,
-    public lastName: string,
-    public bio: string) {}
+    constructor(
+        public id: number,
+        public courseId: number,
+        public firstName: string,
+        public lastName: string,
+        public bio: string) {}
 }
+
+export class CartCourse {
+    constructor(
+        public id: number,
+        public title: string,
+        public price: number) {}
+}
+
 
 export function getCourses(params = <any>{}): Course[] {
     let result = courses;
@@ -31,7 +39,7 @@ export function getCourses(params = <any>{}): Course[] {
 
     if (params.category && result.length > 0) {
         result = result.filter(
-            c => c.categories.indexOf(params.category.toLowerCase()) ! == -1);
+            c => c.categories.indexOf(params.category.toLowerCase()) !== -1);
     }
 
     return result;
@@ -44,6 +52,22 @@ export function getCourseById(courseId: number): Course {
 export function getInstructorsByCourseId(courseId: number): Instructor[] {
     return instructors.filter(i => i.courseId === courseId);
 }
+
+export function getCartItems(params = <any>{}) : CartCourse[] {
+    return cartItems;
+}
+
+export function getCartTotal() {}
+
+export function deleteCartItem(itemId: number) {
+    let result = getCartItems();
+    result = result.filter(
+        ci => ci.id !== itemId);
+
+    return result;
+}
+
+export function addCartItem() {}
 
 
 var courses = [
@@ -128,3 +152,16 @@ var instructors = [
         "bio": "This is an instructor's bio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus cumque corporis, consequuntur, reprehenderit, labore officiis reiciendis similique aliquid dolorum quos praesentium! Reiciendis doloremque nihil inventore officia natus vitae unde, quibusdam."
     },
 ]
+
+var cartItems = [
+    {
+        'id':0,
+        'title': "First Cart Course",
+        'price': 75.00
+    },
+    {
+        'id': 1,
+        'title': "Second Cart Course",
+        'price': 50.00
+    }
+]   
