@@ -1,6 +1,6 @@
 <h3>Your Cart</h3>
 <ul class="list-unstyled">
-    <li *ngFor="let cartCourse of cartCourses | async">
+    <li *ngFor="let cartCourse of cartCourses">
         <span class="pull-right">${{ cartCourse.price }}
             <a href="#" (click)="delete(cartCourse)"><span class="glyphicon glyphicon-remove" ></span></a>
         </span>

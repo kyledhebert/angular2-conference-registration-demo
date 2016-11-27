@@ -10,27 +10,20 @@ import 'rxjs/add/operator/filter';
     templateUrl: 'app/components/cart/cart.html'
 })
 export class CartComponent {
-    cartCourses: Observable<CartCourse[]>;
+    cartCourses: CartCourse[];
 
     constructor(private cartService: CartService) {
-        this.cartCourses = this.cartService.getCartItems();
-        console.log(this.cartCourses);
-   
+        this.cartService.getCartItems()
+            .subscribe(
+                (cartCourses: CartCourse[]) => {
+                    this.cartCourses = cartCourses;
+                });
     }
 
     delete(course: CartCourse) {
-        // optimistically delete the course from the view first
-        console.log(this.cartCourses)
-        this.cartCourses = this.cartCourses.map(
-            courses => courses.splice(courses.indexOf(course),1))
-        console.log(this.cartCourses)
-        // then try to delete from the server
         this.cartService.deleteCartItem(course)
-            .subscribe(null,
-                        // if unable to delete, revert back to original view
-                        error => {
-                            alert("There was an error deleting this item");
-                        });
+            .subscribe();
+
     }
 
     updateTotal() {}

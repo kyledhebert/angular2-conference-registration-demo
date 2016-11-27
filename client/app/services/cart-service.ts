@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/reduce';
@@ -17,22 +17,38 @@ export class CartCourse {
 @Injectable()
 export class CartService {
 
+    private cartCourses: CartCourse[] = []
+
     constructor(private http: Http) {};
 
-    getCartItems(): Observable<CartCourse[]> {
+    getCartItems() {
         return this.http
         .get('/cart')
-        .map(response => response.json());
+        .map(response => {
+            const cartCourses = response.json();
+            // transform the Observable to an Array
+            let transformedCartCourses: CartCourse[] =[];
+            for (let cartCourse of cartCourses) {
+                transformedCartCourses.push(new CartCourse(cartCourse.id, cartCourse.title, cartCourse.price));
+            }
+            this.cartCourses = transformedCartCourses;
+            return transformedCartCourses;
+        } 
     }
 
-    addCartItem(course: Course){
-        let cartCourse = new CartCourse(course.id, course.title, course.price);
-        this.getCartItems().push(cartCourse);
+    addCartItem(course: Course) {
+        this.http
+        .get(`/cart/${course.id}`)
+        .map(response => response.json)
     }
 
-    deleteCartItem(cartCourse: CartCourse){
+    deleteCartItem(course: CartCourse){
+        // optimistically delete from the view first
+        const index = this.cartCourses.indexOf(course);
+        this.cartCourses.splice(index, 1)
+        // then delete on backend
         return this.http
-            .delete(`/cart/${cartCourse.id}`)
+            .delete(`/cart/${course.id}`)
             .map(response => response.json());
     }
 

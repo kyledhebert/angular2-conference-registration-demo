@@ -30,6 +30,10 @@ app.delete('/cart/:id', (request, response) => {
     response.json(deleteCartItem(parseInt(request.params.id)));
 })
 
+app.get('/cart/:id', (request, response) => {
+    response.json(addCartItem(parseInt(request.params.id)));
+})
+
 const httpServer: HttpServer = app.listen(8000, 'localhost', () => {
     const {address, port} = httpServer.address();
 })

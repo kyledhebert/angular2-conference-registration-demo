@@ -25,7 +25,7 @@ export class Instructor {
 
 export interface CourseSearchParams {
     title: string;
-    minPrice; number;
+    minPrice: number;
     maxPrice: number;
 }
 
@@ -56,7 +56,7 @@ export class CourseService {
             .get(`/courses/${courseId}/instructors`)
             .map(response => response.json())
             .map(instructors => instructors.map(
-                (i: any) => new Instructor(i.id, i.courseId, i.firstName, i.lastName, i.bio));
+                (i: any) => new Instructor(i.id, i.courseId, i.firstName, i.lastName, i.bio)));
     }
 
     getAllCategories(): string[] {

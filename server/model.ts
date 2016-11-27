@@ -59,15 +59,21 @@ export function getCartItems(params = <any>{}) : CartCourse[] {
 
 export function getCartTotal() {}
 
-export function deleteCartItem(itemId: number) {
+export function deleteCartItem(courseId: number) {
     let result = getCartItems();
     result = result.filter(
-        ci => ci.id !== itemId);
+        ci => ci.id !== courseId);
 
     return result;
 }
 
-export function addCartItem() {}
+export function addCartItem(courseId: number) {
+    let result = getCartItems();
+    let course = getCourseById(courseId);
+    let cartCourse = new CartCourse(course.id, course.title, course.price);
+    
+    return result.push(cartCourse);
+}
 
 
 var courses = [
