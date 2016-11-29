@@ -33,5 +33,6 @@ export class CourseDetailComponent {
 
     onAdd() {
         this.cartService.addCartItem(this.course);
+        this.cartService.getCartTotal();
     }
 }

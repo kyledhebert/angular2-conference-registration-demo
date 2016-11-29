@@ -2,7 +2,7 @@
 <ul class="list-unstyled">
     <li *ngFor="let cartCourse of cartCourses">
         <span class="pull-right">${{ cartCourse.price }}
-            <a href="#" (click)="delete(cartCourse)"><span class="glyphicon glyphicon-remove" ></span></a>
+            <a href="#" (click)="onDelete(cartCourse)"><span class="glyphicon glyphicon-remove" ></span></a>
         </span>
         <h5>{{ cartCourse.title }}</h5>
     </li>

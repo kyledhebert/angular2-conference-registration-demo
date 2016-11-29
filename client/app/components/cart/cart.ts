@@ -11,6 +11,7 @@ import 'rxjs/add/operator/filter';
 })
 export class CartComponent {
     cartCourses: CartCourse[];
+    cartTotal: number;
 
     constructor(private cartService: CartService) {
         this.cartService.getCartItems()
@@ -20,11 +21,8 @@ export class CartComponent {
                 });
     }
 
-    delete(course: CartCourse) {
+    onDelete(course: CartCourse) {
         this.cartService.deleteCartItem(course)
             .subscribe();
-
     }
-
-    updateTotal() {}
 }
