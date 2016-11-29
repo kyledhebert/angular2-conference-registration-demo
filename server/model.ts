@@ -159,15 +159,4 @@ var instructors = [
     },
 ]
 
-var cartItems = [
-    {
-        'id':0,
-        'title': "First Cart Course",
-        'price': 75.00
-    },
-    {
-        'id': 1,
-        'title': "Second Cart Course",
-        'price': 50.00
-    }
-]   
+var cartItems: CartCourse[] = []
