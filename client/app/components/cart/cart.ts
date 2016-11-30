@@ -25,4 +25,19 @@ export class CartComponent {
         this.cartService.deleteCartItem(course)
             .subscribe();
     }
+
+    checkout() {
+        let handler = (<any>window).StripeCheckout.configure({
+            // this is a publishable demo key
+            key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
+            locale: 'auto',
+        });
+
+        handler.open({
+            name: 'View Source',
+            description: 'Your Courses',
+            amount: 12500
+        });
+    }
+
 }
