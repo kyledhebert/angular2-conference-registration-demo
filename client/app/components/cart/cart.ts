@@ -14,16 +14,17 @@ export class CartComponent {
     cartTotal: number;
 
     constructor(private cartService: CartService) {
+        this.cartTotal = this.cartService.getCartTotal()
         this.cartService.getCartItems()
             .subscribe(
                 (cartCourses: CartCourse[]) => {
                     this.cartCourses = cartCourses;
                 });
     }
-
+    
     onDelete(course: CartCourse) {
-        this.cartService.deleteCartItem(course)
-            .subscribe();
+        this.cartService.deleteCartItem(course);
+            // .subscribe();
     }
 
     checkout() {
@@ -36,7 +37,7 @@ export class CartComponent {
         handler.open({
             name: 'View Source',
             description: 'Your Courses',
-            amount: 12500
+            amount: this.cartTotal + '00'
         });
     }
 

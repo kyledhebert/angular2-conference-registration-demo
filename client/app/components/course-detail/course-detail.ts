@@ -12,6 +12,7 @@ import { CartService } from '../../services/cart-service';
 export class CourseDetailComponent {
     course: Course;
     instructors: Instructor[];
+    cartTotal:number = 0;
 
     constructor(route: ActivatedRoute, courseService: CourseService, private cartService: CartService) {
         const courseId: number = parseInt(route.snapshot.params['courseId']);
@@ -33,6 +34,5 @@ export class CourseDetailComponent {
 
     onAdd() {
         this.cartService.addCartItem(this.course);
-        this.cartService.getCartTotal();
     }
 }
