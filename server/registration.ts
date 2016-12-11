@@ -23,15 +23,21 @@ app.get('/courses/:id/instructors', (request, response) => {
 })
 
 app.get('/cart', (request, response) => {
-    response.json(getCartItems(request.query));
+    response.json(getCartItems());
+})
+
+app.get('/total', (request, response) => {
+    response.json(getCartTotal());
 })
 
 app.delete('/cart/:id', (request, response) => {
     response.json(deleteCartItem(parseInt(request.params.id)));
 })
 
-app.get('/cart/:id', (request, response) => {
-    response.json(addCartItem(parseInt(request.params.id)));
+app.post('/cart', (request, response) => {
+    let course = new CartCourse(request.body.id, request.body.title,
+        request.body.price);
+    response.json(addCartItem(course));
 })
 
 const httpServer: HttpServer = app.listen(8000, 'localhost', () => {

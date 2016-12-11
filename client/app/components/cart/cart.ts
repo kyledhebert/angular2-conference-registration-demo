@@ -11,20 +11,30 @@ import 'rxjs/add/operator/filter';
 })
 export class CartComponent {
     cartCourses: CartCourse[];
-    cartTotal: number;
+    cartTotal: number = 0;
 
     constructor(private cartService: CartService) {
-        this.cartTotal = this.cartService.getCartTotal()
         this.cartService.getCartItems()
             .subscribe(
                 (cartCourses: CartCourse[]) => {
                     this.cartCourses = cartCourses;
                 });
+        this.cartService.getCartTotal()
+            .subscribe(
+                (total: number) => {
+                    this.cartTotal = total;
+                });
     }
     
     onDelete(course: CartCourse) {
-        this.cartService.deleteCartItem(course);
-            // .subscribe();
+        if (confirm("Are you sure you want to delete " + course.title + "?")) {
+            // optimistically update the frontend
+            const index = this.cartCourses.indexOf(course);
+            this.cartCourses.splice(index, 1);
+            // then delete on the server
+            this.cartService.deleteCartItem(course)
+            .subscribe();
+        }
     }
 
     checkout() {

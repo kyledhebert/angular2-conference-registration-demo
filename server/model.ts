@@ -53,26 +53,29 @@ export function getInstructorsByCourseId(courseId: number): Instructor[] {
     return instructors.filter(i => i.courseId === courseId);
 }
 
-export function getCartItems(params = <any>{}) : CartCourse[] {
+export function getCartItems() : CartCourse[] {
     return cartItems;
 }
 
-export function getCartTotal() {}
+export function getCartTotal() {
+    let total: number = 0;
+    for (let item of getCartItems()) {
+        total += item.price;
+    }
+    return total;
+}
 
 export function deleteCartItem(courseId: number) {
     let result = getCartItems();
     result = result.filter(
         ci => ci.id !== courseId);
-
     return result;
 }
 
-export function addCartItem(courseId: number) {
+export function addCartItem(course: CartCourse) {
     let result = getCartItems();
-    let course = getCourseById(courseId);
-    let cartCourse = new CartCourse(course.id, course.title, course.price);
-    
-    return result.push(cartCourse);
+    result.push(course);
+    return result;
 }
 
 
@@ -159,4 +162,10 @@ var instructors = [
     },
 ]
 
-var cartItems: CartCourse[] = []
+var cartItems = [
+{
+    "id": 2,
+    "title": "An Awesome Course",
+    "price": 95
+}
+]
