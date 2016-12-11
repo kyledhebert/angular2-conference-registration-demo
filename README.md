@@ -12,7 +12,7 @@ The typescript files in the client directory will get compiled at run time, but 
 To do this, run `$ npm run tsc`. This create two javascript files `registration.js` and `model.js` in the build directory.
 
 ## Running the app
-To run the app, you can use another script -- `npm start` -- to run the app in production mode. To run the app in dev mode use `npm run dev`.
+To run the app, you can use another script -- `npm start` -- to run the app in production mode. To run the app in dev mode use `npm run dev`. Dev mode starts [nodemon][nodemon] to watch for changes to your source files and automatically restarts the server.
 
 Once the app is running visit <http://localhost:8000> in your web browser to view the app.
 
@@ -24,3 +24,4 @@ The Stripe Checkout component is using the Stripe demo API key. To checkout use 
 [nodejs]: https://nodejs.org/en/
 [typescriptlang]: http://www.typescriptlang.org/
 [stripe]: https://stripe.com/checkout
+[nodemon]: https://nodemon.io
